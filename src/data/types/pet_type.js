@@ -4,7 +4,7 @@ const {
   GraphQLList,
   GraphQLString
 } = require('graphql');
-const { makeIterable } = require('../helpers');
+const { makeIterable, getSize, getStatus } = require('../helpers');
 
 const ContactType = require('./contact_type');
 const MediaType = require('./media_type');
@@ -26,7 +26,7 @@ module.exports = new GraphQLObjectType({
     },
     status: {
       type: GraphQLString,
-      resolve: json => json.status.$t
+      resolve: json => getStatus(json.status.$t)
     },
     contact: {
       type: ContactType,
@@ -38,7 +38,7 @@ module.exports = new GraphQLObjectType({
     },
     size: {
       type: GraphQLString,
-      resolve: json => json.size.$t
+      resolve: json => getSize(json.size.$t)
     },
     media: {
       type: MediaType,
