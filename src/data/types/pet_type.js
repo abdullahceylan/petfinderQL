@@ -4,7 +4,7 @@ const {
   GraphQLList,
   GraphQLString
 } = require('graphql');
-const { makeIterable, getSize, getStatus } = require('../helpers');
+const { makeIterable, getSize, getStatus, getSex } = require('../helpers');
 
 const ContactType = require('./contact_type');
 const MediaType = require('./media_type');
@@ -58,7 +58,7 @@ module.exports = new GraphQLObjectType({
     },
     sex: {
       type: GraphQLString,
-      resolve: json => json.sex.$t
+      resolve: json => getSex(json.sex.$t)
     },
     description: {
       type: GraphQLString,

@@ -36,5 +36,15 @@ module.exports = {
         return 'Extra Large';
     }
     return size;
+  },
+  // Get pet size
+  getSex: sex => {
+    switch (sex) {
+      case 'F':
+        return 'Female';
+      case 'M':
+        return 'Male';
+    }
+    return size;
   }
 };
