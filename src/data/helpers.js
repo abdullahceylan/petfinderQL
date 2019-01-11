@@ -1,7 +1,8 @@
+const { castArray } = require('lodash/fp');
 const axios = require('axios');
 
 module.exports = {
-  makeIterable: data => (data.length > 0 ? data : [data]),
+  makeIterable: data => (data ? castArray(data) : []),
   // Do network request
   doRequest: (endpoint, params) => {
     console.log(endpoint, JSON.stringify(params));
@@ -38,8 +39,8 @@ module.exports = {
     return size;
   },
   // Get pet size
-  getSex: sex => {
-    switch (sex) {
+  getGender: gender => {
+    switch (gender) {
       case 'F':
         return 'Female';
       case 'M':
