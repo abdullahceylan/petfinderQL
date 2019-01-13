@@ -1,4 +1,10 @@
-const { GraphQLObjectType, GraphQLInt, GraphQLList } = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLBoolean
+} = require('graphql');
+const { makeIterable } = require('../helpers');
 
 const SinglePetType = require('./pet_type');
 
@@ -11,9 +17,13 @@ module.exports = new GraphQLObjectType({
       type: GraphQLInt,
       resolve: json => json.lastOffset
     },
+    isLastRecord: {
+      type: GraphQLBoolean,
+      resolve: json => !Array.isArray(json.pets)
+    },
     pets: {
       type: new GraphQLList(SinglePetType),
-      resolve: json => json.pets
+      resolve: json => makeIterable(json.pets)
     }
   })
 });

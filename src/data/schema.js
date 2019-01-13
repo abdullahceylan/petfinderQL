@@ -270,6 +270,7 @@ module.exports = new GraphQLSchema({
             format: 'json'
           }).then(response => ({
             lastOffset: response.data.petfinder.lastOffset.$t,
+            isLastRecord: response.data.petfinder.pets.pet,
             pets: response.data.petfinder.pets.pet
           }))
       },
